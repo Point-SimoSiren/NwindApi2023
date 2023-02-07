@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NwindApi2023", "NwindApi2023\NwindApi2023.csproj", "{91378A28-60A5-4D86-965E-F546BA1E0FFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91378A28-60A5-4D86-965E-F546BA1E0FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91378A28-60A5-4D86-965E-F546BA1E0FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91378A28-60A5-4D86-965E-F546BA1E0FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91378A28-60A5-4D86-965E-F546BA1E0FFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A251274B-B9B4-4053-BBE2-A37C7DD10E14}
+	EndGlobalSection
+EndGlobal
