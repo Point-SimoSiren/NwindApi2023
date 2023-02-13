@@ -58,16 +58,14 @@ namespace NwindApi2023.Controllers
 
         // Hakee asiakkaan Company namen perusteella
         [HttpGet]
-        [Route("cname/{cname}/country/{country}")]
-        public ActionResult GetByCompanyName(string cname, string country)
+        [Route("cname/{cname}")]
+        public ActionResult GetByCompanyName(string cname)
         {
             try
             {
-                //var cust = (from c in db.Customers where c.CompanyName == cname select c).ToList();
-                //var cust = db.Customers.Where(c => c.CompanyName == cname);
+                //var cust = (from c in db.Customers where c.CompanyName.Contains(cname) select c).ToList();
 
-                var cust = db.Customers.Where(c => c.CompanyName.Contains(cname) &&
-                country == c.Country).ToList();
+                var cust = db.Customers.Where(c => c.CompanyName.Contains(cname)).ToList();
 
                 if (cust.Count > 0)
                 {
@@ -75,7 +73,7 @@ namespace NwindApi2023.Controllers
                 }
                 else
                 {
-                    return NotFound("Asiakasta hakusanalla " + cname + " ja " + country + " ei löytynyt.");
+                    return NotFound($"Asiakasta hakusanalla {cname} ei löytynyt.");
                 }
             }
 
@@ -83,8 +81,53 @@ namespace NwindApi2023.Controllers
             {
                 return BadRequest("Tapahtui virhe: " + e.Message);
             }
-
         }
+
+        // Uuden asiakkaan luominen
+        [HttpPost]
+        public ActionResult CreateNew([FromBody] Customer newCustomer)
+        {
+
+            try
+            {
+                db.Customers.Add(newCustomer);
+                db.SaveChanges();
+                return Ok($"Asiakas {newCustomer.CompanyName} lisätty onnistuneesti");
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"Tapahtui virhe tyypiltään: {e.GetType().Name}. " +
+                    $"Lue lisää: {e.InnerException}");
+            }
+        }
+
+        // Asiakkaan poistaminen
+        [HttpDelete]
+        [Route("{id}")]
+        public ActionResult DeleteCustomer(string id)
+        {
+            Customer cust = db.Customers.Find(id);
+            if (cust != null)
+            {
+                try
+                {
+                    db.Customers.Remove(cust);
+                    db.SaveChanges();
+                    return Ok($"Asiakas {cust.CompanyName} poistettiin.");
+                }
+
+                catch (Exception e)
+                {
+                    return BadRequest(e.InnerException);
+                }
+            }
+            else
+            {
+                return NotFound($"Asiakasta id:llä {id} ei löytynyt.");
+            }
+        }
+
+
 
     }
 }
